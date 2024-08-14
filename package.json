@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"node index"
+    "start": "node index"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "mongodb": "^3.4.1"
+    "mongodb": "^3.4.1",
+    "mongodb-legacy": "^6.1.0"
   }
 }
