@@ -1,32 +1,19 @@
-const assert = require('assert').strict;
-
-exports.insertDocument = (db, document,collection,callback) => {
-    const coll = db.collection(collection);//given app a way to access a coll in a connected db
-    coll.insertOne(document,(err,result)=>{
-        assert.strictEqual(err,undefined);
-        callback(result);
-    });
-};
-exports.findDocuments = (db, collection,callback) => {
+exports.insertDocument = (db, document, collection) => {
     const coll = db.collection(collection);
-    coll.find().toArray((err,docs)=>{
-        assert.strictEqual(err,undefined);
-        callback(docs);
-    })
+    return coll.insertOne(document);
 };
-exports.removeDocument = (db, document,collection,callback) => {
-    const coll = db.collection(collection);
-    coll.deleteOne(document,(err,result)=>{
-        assert.strictEqual(err,undefined);
-        callback(result);
-    });
 
+exports.findDocuments = (db, collection) => {
+    const coll = db.collection(collection);
+    return coll.find({}).toArray();
 };
-exports.updateDocument = (db, document,update,collection,callback) => {
-    const coll = db.collection(collection);
-    coll.updateOne(document,{$set:update},null,(err,result)=>{
-        assert.strictEqual(err,undefined);
-        callback(result);
-    });
 
+exports.removeDocument = (db, document, collection) => {
+    const coll = db.collection(collection);
+    return coll.deleteOne(document);
+};
+
+exports.updateDocument = (db, document, update, collection) => {
+    const coll = db.collection(collection);
+    return coll.updateOne(document, { $set: update }, null);
 };
